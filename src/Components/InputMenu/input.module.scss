@@ -1,0 +1,21 @@
+.input {
+  display: flex;
+  margin-left: 40%;
+ margin-top: 5%;
+  &_search {
+    height: 30px;
+    width: 300px;
+    border-radius: 6px;
+    border: 1px solid grey;
+    cursor: pointer;
+  }
+  &_search:hover {
+    border: 1px solid grey;
+  }
+}
+
+.input_btn_icon{
+    font-size: 18px;
+    height: 16px;
+    font-weight: 500;
+}
