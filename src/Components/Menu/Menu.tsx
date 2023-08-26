@@ -1,4 +1,3 @@
-// import { useState } from "react";
 
 import InputMenu from "../InputMenu/InputMenu";
 import styles from "./menu.module.scss";
@@ -76,7 +75,8 @@ const Menu = () => {
     getMen,
     getJewelery,
     getElectronics,
-    getWomen
+    getWomen,
+    text
   };
 
 
