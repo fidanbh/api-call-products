@@ -5,15 +5,15 @@ import { ThemeContext } from "../Menu/Menu";
 
 const InputMenu = () => {
   const theme = useContext(ThemeContext)
-  const { getFilterList} = theme;
+  const { getFilterList,text} = theme;
  
   return (
     <div className={styles.input}>
       <div >
-        <input placeholder="write your search" className={styles.input_search} onChange={getFilterList} ></input>
+        <input placeholder="write your search" className={styles.input_search} ref={text} ></input>
       </div>
       <div className={styles.input_btn}>
-        <button>
+        <button onClick={()=>getFilterList(event)}>
           <AiOutlineSearch className={styles.input_btn_icon}  />
         </button>
       </div>
