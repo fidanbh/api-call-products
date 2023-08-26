@@ -5,7 +5,7 @@ import styles from "./menu.module.scss";
 import Buttons from "../Buttons/Buttons";
 
 import Content from "../Content/Content";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect,useRef } from "react";
 import axios from "axios";
 
 export const ThemeContext = createContext(undefined);
@@ -20,16 +20,15 @@ const Menu = () => {
     });
   }
   useEffect(() => getData(), []);
+  const text = useRef()
   const getFilterList = (event) => {
-    let text = event.target.value;
-    console.log(text);
+   let newText = text.current.value;
     let newData = [...state];
-    console.log(newData);
     newData = newData.filter((list) => {
-      return list.category.indexOf(text.toLowerCase()) !== -1;
+      return list.category.indexOf(newText.toLowerCase()) !== -1;
     });
     setState(newData);
-    setMessage(text)
+    setMessage(newText)
   };
 
 // const [category, setCategory] = useState(state)
