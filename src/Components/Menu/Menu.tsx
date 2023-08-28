@@ -12,61 +12,63 @@ const Menu = () => {
   const datas = "https://fakestoreapi.com/products";
   const [state, setState] = useState([]);
   const [message, setMessage] = useState('Common');
-
+  const [originalData, setOriginalData] = useState([]);
+  
   function getData() {
     axios.get(datas).then((response) => {
       setState(response.data);
+      setOriginalData(response.data);
     });
   }
-  useEffect(() => getData(), []);
-  const text = useRef()
+const text = useRef();
   const getFilterList = (event) => {
-   let newText = text.current.value;
-    let newData = [...state];
-    newData = newData.filter((list) => {
-      return list.category.indexOf(newText.toLowerCase()) !== -1;
+    let newText = text.current.value;
+    if (newText === "") {
+      setState(originalData); // Reset the data to original state
+      setMessage("Common");
+    } else {
+      let newData = originalData.filter((list) => {
+        return list.category.indexOf(newText.toLowerCase()) !== -1;
+      });
+      setState(newData);
+      setMessage(newText);
+    }
+  };
+  
+  useEffect(() => getData(), []);
+  const getMen = (item) => {
+    const result = originalData.filter((curData) => {
+      return curData.category.indexOf(item.toLowerCase()) !== -1;
     });
-    setState(newData);
-    setMessage(newText)
+    console.log("Hi");
+    setState(result);
+    setMessage(item)
   };
 
-// const [category, setCategory] = useState(state)
-  const getMen = (item) => {
-    let newData = [...state];
-    const result = newData.filter((curData) => {
-      //return curData.category.indexOf === item;
-      return curData.category.indexOf(item.toLowerCase())!== -1;
-      
-    });
-    console.log("Hi");
-    setState(result);
-  };
   const getJewelery = (item) => {
-    let newData = [...state];
-    const result = newData.filter((curData) => {
-      //return curData.category.indexOf === item;
-      return curData.category.indexOf(item.toLowerCase())!== -1;
+    const result = originalData.filter((curData) => {
+      return curData.category.indexOf(item.toLowerCase()) !== -1;
     });
     console.log("Hi");
     setState(result);
+    setMessage(item)
   };
+
   const getElectronics = (item) => {
-    let newData = [...state];
-    const result = newData.filter((curData) => {
-      //return curData.category.indexOf === item;
-      return curData.category.indexOf(item.toLowerCase())!== -1;
+    const result = originalData.filter((curData) => {
+      return curData.category.indexOf(item.toLowerCase()) !== -1;
     });
     console.log("Hi");
     setState(result);
+    setMessage(item)
   };
   const getWomen = (item) => {
-    let newData = [...state];
-    const result = newData.filter((curData) => {
-      //return curData.category.indexOf === item;
-      return curData.category.indexOf(item.toLowerCase())!== -1;
+    const result = originalData.filter((curData) => {
+      return curData.category.indexOf(item.toLowerCase()) !== -1;
     });
     console.log("Hi");
     setState(result);
+    setMessage(item)
   };
  
   const obj = {
